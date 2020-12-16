@@ -49,5 +49,5 @@ Route::group([
 
 Route::get('products', [ProductsController::class, 'Index']);
 Route::post('products/create', [ProductsController::class, 'Create']);
-Route::put('products/create', [ProductsController::class, 'Update']);
-Route::post('products/create', [ProductsController::class, 'Create']);
+Route::post('products/{id}', [ProductsController::class, 'Update']);
+Route::delete('products/delete/{id}', [ProductsController::class, 'Delete']);
