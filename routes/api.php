@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Products\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
@@ -44,3 +45,9 @@ Route::group([
     Route::get('find/{token}', [PasswordResetController::class, 'Find']);
     Route::post('reset', [PasswordResetController::class, 'Reset']);
 });
+
+
+Route::get('products', [ProductsController::class, 'Index']);
+Route::post('products/create', [ProductsController::class, 'Create']);
+Route::put('products/create', [ProductsController::class, 'Update']);
+Route::post('products/create', [ProductsController::class, 'Create']);

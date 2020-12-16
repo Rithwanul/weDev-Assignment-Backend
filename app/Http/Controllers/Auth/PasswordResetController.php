@@ -84,7 +84,7 @@ class PasswordResetController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse [string] message
      */
-    public function reset(Request $request)
+    public function Reset(Request $request)
     {
         $request->validate([
             'email' => 'required|string|email',
