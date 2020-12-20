@@ -37,14 +37,14 @@ class AuthController extends Controller
        $user->email                 =           $request->email;
        $user->password              =           bcrypt($request->password);
        $user->activation_token      =           Str::random(60);
-       $user->save();
+       $result                      =           $user->save();
 
        $mail = new SignupActivate($user);
        $user->notify($mail);
 
 
        return response()->json([
-           'message'        =>      'Successfully Created User'
+           'message'        =>      $result
        ], 201);
    }
 
@@ -92,6 +92,8 @@ class AuthController extends Controller
         $token->save();
 
         return response()->json([
+            'message'           =>      'Success',
+            'user'              =>      $user,
             'access_token'      =>      $tokenResult->accessToken,
             'token_type'        =>      'Bearer',
             'expires_at'        =>      Carbon::parse(
@@ -107,10 +109,10 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse [string] message
      */
     public function Logout(Request $request){
-        $request->user()->token()->revoke();
+        $result = $request->user()->token()->revoke();
 
         return response()->json([
-            'message'       =>          'Successfully Logout'
+            'message'       =>          $result
         ]);
     }
 
@@ -150,7 +152,7 @@ class AuthController extends Controller
         }
         $user->save();
         return response()->json([
-            'message'       =>      'Account Activated!! Please Login'
+            'message'       =>      true
         ]);
     }
 }

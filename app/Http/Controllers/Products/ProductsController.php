@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Models\Products;
-use http\Env\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\isNull;
 use Validator;
@@ -79,7 +77,7 @@ class ProductsController extends Controller
     public function Delete($id){
         $product = Products::find($id);
 
-        if (!isNull($product))
+        if ($product != null)
             $result  = $product->delete();
         else
             return response()->json([
@@ -103,9 +101,6 @@ class ProductsController extends Controller
      */
     public function Update(Request $request, $id){
         $product = Products::find($id);
-
-
-
 
         $rules = [
             'title' => 'required|string',

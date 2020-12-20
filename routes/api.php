@@ -33,6 +33,11 @@ Route::group([
     ], function () {
         Route::get('logout', [AuthController::class, 'Logout']);
         Route::get('user', [AuthController::class, 'User']);
+
+        Route::get('products', [ProductsController::class, 'Index']);
+        Route::post('products/create', [ProductsController::class, 'Create']);
+        Route::post('products/{id}', [ProductsController::class, 'Update']);
+        Route::delete('products/delete/{id}', [ProductsController::class, 'Delete']);
     });
 });
 
@@ -47,7 +52,4 @@ Route::group([
 });
 
 
-Route::get('products', [ProductsController::class, 'Index']);
-Route::post('products/create', [ProductsController::class, 'Create']);
-Route::post('products/{id}', [ProductsController::class, 'Update']);
-Route::delete('products/delete/{id}', [ProductsController::class, 'Delete']);
+
